@@ -278,9 +278,8 @@ public class NavigationViewController: NavigationPulleyViewController, RouteMapV
     
     var styleTypeForTimeOfDay: StyleType {
         guard automaticallyAdjustsStyleForTimeOfDay else { return .dayStyle }
-        
         guard let location = routeController.location,
-            let solar = Solar(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude),
+            let solar = Solar(coordinate: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)),
             let sunrise = solar.sunrise, let sunset = solar.sunset else {
                 return .dayStyle
         }
